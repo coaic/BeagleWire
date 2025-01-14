@@ -13,7 +13,11 @@ truncate $1 -s 4194304
 
 echo -e "Turning of FPGA by keeping reset High"
 config-pin P9_25 gpio_pu
-echo 117 > /sys/class/gpio/export || echo 117 > /sys/class/gpio/export
+# echo 117 > /sys/class/gpio/export || echo 117 > /sys/class/gpio/export
+# Export only if not already exported
+if [ ! -d "/sys/class/gpio/gpio117" ]; then
+    echo 117 > /sys/class/gpio/export
+fi
 echo out > /sys/class/gpio/gpio117/direction || echo out > /sys/class/gpio/gpio117/direction
 
 echo -e "Activating SPI mode"
