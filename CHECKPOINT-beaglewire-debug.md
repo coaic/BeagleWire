@@ -29,6 +29,10 @@
    - `gpioset`, `gpioget` (gpiod package)
    - `python3-spidev`
    - `flashrom`
+5. **Tests Performed:**
+   - With BBB booted up P9_25 reads 2.8v
+   - sudo gpioset -z -c 2 21=0 - P9_25 reads 0.0v
+   - sudo pkill gpioset; sudo gpioset -z -c 2 21=1 P9_25 reads 3.3v
 
 ---
 
